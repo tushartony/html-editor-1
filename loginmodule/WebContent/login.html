@@ -1,0 +1,196 @@
+<html>
+<head>
+<script type = "text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   	<script src = "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.js"></script>
+   	
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
+
+</head>
+<style>
+#nav_menu{
+ width:125px;
+ height:100px;
+ background-color:white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+ 
+
+}
+.btn-styling{
+      border:none;
+      background-color:white;
+
+}
+ul,li{
+  padding:2px;
+  margin:2px;
+
+}
+/*****************************************************************************************************/
+body{
+	background:white;
+}
+	#body{
+		background: white;
+		color: black;
+		height: 500px;
+		width: 600px;
+		
+		border-radius: 3px;
+	}
+	h1{
+		color: red;
+		border-radius: 4px;
+		margin-top: 30px;
+	}
+	#num{
+		margin-bottom: 3px;
+	}
+	#bdy{
+		height:80%;
+	}
+	button{
+		background: white;
+		color: black;
+		padding: 10px;
+		border-radius: 2px;
+		font-weight: bold;
+		width: 150px;
+		height: auto;
+	}button:hover{
+		background: #6ca6cd;
+	}
+
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+<div class="login-page" ng-app="myApp" ng-controller="formCtrl">
+  <div class="form" ng-show= "maindiv">
+    
+      <form class="login-form" ng-show="loginform">
+    
+
+
+<br>
+
+      <input type="text" placeholder="email" ng-model="username"/>
+      <input type="password" placeholder="password" ng-model="passwords"/>
+      <button ng-click=login(username,passwords)>login</button>
+      
+      <p class="message">Not registered? <a href="http://localhost:8080/loginmodule/saveUserForm.html">Create an account</a></p>
+	  <p class="message">{{Status}}</p>
+    </form>
+	</div>
+	<div class="welcomeUser" ng-show="welcomeForm">
+	<header>
+	
+		    
+<div id='wrap'>
+    <div id="clickable_div"><button class="btn-styling"><img src="img/1.jpg"  alt="profilePic" width="20px" height="20px"> <p> {{nameofUser}} </p></button></div>
+        <div id="nav_menu">
+            <ul type="none">
+                <li id="l1"></li>
+                <li><a href="!#main">Previous-result</a></li>
+                <li><a href="http://localhost:8080/loginmodule/assesment.html">Assesment</a></li>
+                <li><a href="http://localhost:8080/loginmodule/login.html">Sign-out</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+		    
+    </header>
+		
+		
+		<div ng-view>
+		
+		
+		</div>
+		
+
+		
+		
+	<div id="searc">
+			
+			<form name="google" action="#" method="POST"><br>
+		           		
+			</form>
+		</div>
+		
+	
+	
+</div>
+<script>
+
+$('#clickable_div').mouseover( function(){
+    $('#nav_menu').slideDown();
+})
+$('#wrap').mouseleave( function(){
+    $('#nav_menu').slideUp();
+});
+var app = angular.module('myApp', ['ui.bootstrap']);
+app.controller('formCtrl', function($scope,$http) {
+    $scope.welcomeForm = false;
+	$scope.loginform =true;
+	$scope.maindiv = true;
+	
+	
+	
+	$scope.login = function(username,pwd){
+	//"http://localhost:8080/loginmodule/user/auth?email=k@k.com&pwd=xyz12"
+	var url = "http://localhost:8080/loginmodule/rest/user/auth?email="+username+"&pwd="+pwd;
+	console.log("##-----url--",url)
+	$http({
+	method: 'GET',
+	url: url
+		}).then(function successCallback(response) {
+			
+			var response=JSON.parse(response.data);
+			
+			
+			console.log('hello1',response.Status);
+		if(response.Status =='Success'){
+			console.log(response.name);
+		$scope.Status = 'Successfully logged in';
+		$scope.nameofUser = response.name;
+		$scope.loginform = false;
+		$scope.maindiv = false;
+		$scope.welcomeForm = true;
+		
+		
+		$scope.redirectIndex=function(){
+			window.location = "search.html";
+		}
+		
+		redirectIndex();
+		} else {
+			console.log('hello2');
+		$scope.Status = 'Invalid user';
+		}
+		console.log(response);
+		}, function errorCallback(response) {
+		$scope.Status = 'Invalid user';
+		});
+	}
+	
+	
+	
+	
+	});
+	
+	</script>
+	<footer>
+	<center> COPY RIGHTS  © Roughbook </center>
+		</footer>
+</body>
+<style>
+
+</html>

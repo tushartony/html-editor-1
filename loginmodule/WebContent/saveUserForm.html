@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="WebContent/style.css" type="text/css" rel="stylesheet">
+<title>Insert title here</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://code.angularjs.org/1.2.13/angular.min.js"></script>
+</head>
+<style>
+ .signup-align {
+		font-family: "Roboto", sans-serif;
+		outline: 0;
+		background: #f2f2f2;
+		width: 30%;
+		border: 0;
+		margin: 0 0 15px;
+		padding: 15px;
+		box-sizing: border-box;
+		font-size: 14px;
+	}
+.submitt-button{
+		font-family: "Roboto", sans-serif;
+		background: #FF4500;
+		width: 30%;
+		border: 0;
+		padding: 15px;
+		color: #FFFFFF;
+		font-size: 14px;
+		-webkit-transition: all 0.3 ease;
+		transition: all 0.6 ease;
+		cursor: pointer;
+		
+    }
+.submitt-button:hover{
+		background-color:#0000FF;
+	}
+#header-styling{
+		margin-top:50px;
+		margin-bottom:30px;
+		font-type:normal;
+		font-family: Arial, Helvetica, sans-serif;
+
+	}
+</style>
+<body>
+<div class="row">
+		<div class="col-sm-12" align="center">
+				<h1 id="header-styling">SignUp</h1>
+		</div>
+</div>
+<section ng-app="myApp" ng-controller="mainCtrl"> 
+<form action="http://localhost:8080/loginmodule/rest/user/add" method="post" enctype="multipart/form-data" class="container-fluid" align="center" name="myForm">
+<div class="row">
+<div class="col-sm-12">
+<p><input type="number" class="signup-align" name="uid" placeholder="I.D" /></p>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<p><input type="text" class="signup-align" name="userName"  placeholder="User Name"/></p>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<input type="{{inputType}}" class="signup-align" name="password"  placeholder="Password" ng-minlength='8' ng-maxlength='26' ng-model="user.last"/><br>
+<input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
+<label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
+<label for="checkbox" ng-if="!passwordCheckbox">Show password</label> 
+<tt>myForm.$error.minlength = {{!myForm.$error.minlength}}</tt><br/>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<p><input type="text" class="signup-align" name="email"  placeholder="E-Mail"/></p>
+</div>
+</div>
+<b><input type="submit"  value="Save User" class="submitt-button"/></b>
+</form>
+</section>
+
+</body>
+
+<script>
+var myApp = angular.module('myApp', []);
+myApp.controller('mainCtrl', ['$scope', function( $scope ){
+
+  // Set the default value of inputType
+  $scope.inputType = 'password';
+
+  // Hide & show password function
+  $scope.hideShowPassword = function(){
+    if ($scope.inputType == 'password')
+      $scope.inputType = 'text';
+    else
+      $scope.inputType = 'password';
+  };
+}])
+
+
+
+</script>
+</html>
