@@ -2,3 +2,4 @@ http://www.lazyquestion.com/angularjs-interview-questions/angular-2
  
 http://multiple-choice-questions.blogspot.in/2017/05/angular-2-components.html
  
+ https://www.code-sample.com/2016/06/angular-2-interview-questions-and.html
