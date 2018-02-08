@@ -1,31 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import { RoutingModule } from './routing/routing.module';
+
+
 import { AppComponent } from './app.component';
-import { HeaderComponentComponent } from './header-component/header-component.component';
-import { FooterComponentComponent } from './footer-component/footer-component.component';
-import { DirectiveComponentComponent } from './directive-component/directive-component.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
-import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
-import { HttpModule } from '@angular/http';
-
-
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { Page1Component } from './page1/page1.component';
+import { Page2Component } from './page2/page2.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from './login/login.component';
+import { NestedPage1Component } from './nested-page1/nested-page1.component';
+import { NestedPage2Component } from './nested-page2/nested-page2.component';
+import { NestedPage3Component } from './nested-page3/nested-page3.component';
+import { NestedPage4Component } from './nested-page4/nested-page4.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponentComponent,
-    FooterComponentComponent,
-    DirectiveComponentComponent,
-    EmployeeListComponent,
-    EmployeeDetailsComponent,
-  
+    HeaderComponent,
+    HomeComponent,
+    Page1Component,
+    Page2Component,
+    SignUpComponent,
+    LoginComponent,
+    NestedPage1Component,
+    NestedPage2Component,
+    NestedPage3Component,
+    NestedPage4Component,
+    FooterComponent
   ],
   imports: [
-    
     BrowserModule,
-    FormsModule,
-    HttpModule
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
